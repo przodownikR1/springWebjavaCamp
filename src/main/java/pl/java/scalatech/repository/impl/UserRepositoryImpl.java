@@ -1,5 +1,8 @@
 package pl.java.scalatech.repository.impl;
 
+import static java.util.stream.Collectors.toList;
+
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 import javax.annotation.PostConstruct;
@@ -20,10 +23,17 @@ public class UserRepositoryImpl implements UserRepository{
  }
 
 
- public User findById(Long id) {
+ @Override
+public User findById(Long id) {
      return  users.entrySet().stream().filter(t->t.getKey() == id).map(t -> t.getValue()).findFirst().orElseThrow(()->new IllegalArgumentException("user not exists"));
 
 
  }
+
+
+@Override
+public List<User> getAll() {
+    return users.entrySet().stream().map(t -> t.getValue()).collect(toList());
+}
 
 }

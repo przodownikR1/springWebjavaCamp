@@ -22,4 +22,9 @@ public void addFormatters(FormatterRegistry registry) {
     registry.addConverter(stringToUserConverter);
 }
 
+/*@Override
+public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+    super.
+}*/
+
 }

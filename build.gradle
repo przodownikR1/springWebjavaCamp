@@ -66,7 +66,8 @@ dependencies {
     compile("org.thymeleaf.extras:thymeleaf-extras-springsecurity3:2.1.1.RELEASE")
     compile ("org.thymeleaf:thymeleaf:${thymeleafVersion}")
     compile ("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:1.2.5")
-    
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.6.3'
+    compile 'com.fasterxml.jackson.core:jackson-core:2.6.3'
     
     compile ("org.thymeleaf:thymeleaf-spring4:${thymeleafVersion}")
     
