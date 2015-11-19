@@ -50,4 +50,12 @@ public class UserController {
 
     }
 
+    @RequestMapping("/amount/{id}")
+    ResponseEntity<String> getAmount(@PathVariable("id")Long id){
+         log.info("getUserById {} , format : {}",id);
+
+        return ResponseEntity.ok(""+conversionService.convert(id, String.class));
+
+    }
+
 }

@@ -7,6 +7,7 @@ import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import pl.java.scalatech.converters.AmountFormatter;
 import pl.java.scalatech.converters.LongToUserConverter;
 import pl.java.scalatech.converters.StringToUserConverter;
 @Configuration
@@ -18,12 +19,14 @@ public class MvcConfig extends WebMvcConfigurerAdapter{
 private StringToUserConverter stringToUserConverter;
 @Autowired
 private LongToUserConverter longToUserConverter;
-
+@Autowired
+private AmountFormatter amountFormatter;
 @Override
 public void addFormatters(FormatterRegistry registry) {
     super.addFormatters(registry);
     registry.addConverter(stringToUserConverter);
     registry.addConverter(longToUserConverter);
+    registry.addFormatter(amountFormatter);
 }
 
 /*@Override
