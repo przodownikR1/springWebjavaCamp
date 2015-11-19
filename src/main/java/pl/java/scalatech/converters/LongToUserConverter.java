@@ -8,17 +8,16 @@ import org.springframework.stereotype.Component;
 
 import pl.java.scalatech.domain.User;
 import pl.java.scalatech.repository.UserRepository;
-
 @Component
-public class StringToUserConverter implements Converter<String,User>{
+public class LongToUserConverter implements Converter<Long,User>{
 
     @Autowired
     private UserRepository userRepository;
 
     @Override
-    public User convert(String id) {
+    public User convert(Long id) {
         checkNotNull(id);
-        return userRepository.findById(Long.parseLong(id));
+        return userRepository.findById(id);
     }
 
 }
