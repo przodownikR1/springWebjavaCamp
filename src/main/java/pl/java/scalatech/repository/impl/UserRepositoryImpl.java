@@ -18,8 +18,8 @@ public class UserRepositoryImpl implements UserRepository{
 
  @PostConstruct
  public void init() {
-     users.put(1l, new User(1l,"slawek","przodownik"));
-     users.put(2l, new User(1l,"mike","tyson"));
+     users.put(1l, new User(1l,"slawek","przodownik",12l));
+     users.put(2l, new User(1l,"mike","tyson",222l));
  }
 
 

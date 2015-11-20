@@ -25,6 +25,7 @@ public class UserController {
 
     @RequestMapping("/users")
     ResponseEntity<List<User>> getAllUser(){
+        log.info("+++  {}",userRepository.getAll());
         return ResponseEntity.ok(userRepository.getAll());
     }
 
