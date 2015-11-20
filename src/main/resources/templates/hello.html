@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:tiles="http://www.thymeleaf.org"
+    xmlns:dt="http://github.com/dandelion/datatables"
+     th:lang="${#locale.language}">
+
+<head>
+  <title>FirstTest</title>
+</head>
+
+
+<body>
+ <h1>hello spring no xml ;)</h1>
+ 
+ 
+
+
+
+
+
+<table id="myTableId" dt:table="true">
+  <thead>
+    <tr>
+      <th >Id</th>
+      <th dt:sortInitDirection="desc">name</th>
+      <th>login</th>
+      <th dt:sortInitDirection="asc">Salary</th>
+      
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="person : ${users}">
+      <td th:text="${person.id}">1</td>
+      <td th:text="${person.name}">John</td>
+      <td th:text="${person.login}">Doe</td>
+      <td th:text="${person.salary}">Nobody knows!</td>
+      
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+ 
+ 
+</body>
+
+
+
+
+</html>

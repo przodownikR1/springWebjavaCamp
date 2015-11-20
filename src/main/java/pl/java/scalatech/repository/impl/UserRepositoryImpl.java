@@ -20,6 +20,9 @@ public class UserRepositoryImpl implements UserRepository{
  public void init() {
      users.put(1l, new User(1l,"slawek","przodownik",12l));
      users.put(2l, new User(1l,"mike","tyson",222l));
+     users.put(3l, new User(1l,"roy","jones",56l));
+     users.put(4l, new User(1l,"andrew","golota",7l));
+
  }
 
 

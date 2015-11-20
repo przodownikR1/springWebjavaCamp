@@ -17,6 +17,9 @@ import org.springframework.web.filter.ShallowEtagHeaderFilter;
 import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import com.github.dandelion.core.web.DandelionFilter;
+import com.github.dandelion.core.web.DandelionServlet;
+
 import ch.qos.logback.classic.helpers.MDCInsertingServletFilter;
 import lombok.extern.slf4j.Slf4j;
 import pl.java.scalatech.config.AppConfig;
@@ -67,9 +70,16 @@ public class SpringWebAppInitializer extends AbstractAnnotationConfigDispatcherS
         registerHiddenHttpMethodFilter(servletContext);
         mdcFilter(servletContext);
 
+        FilterRegistration.Dynamic dandelionFilter = servletContext.addFilter("dandelionFilter", new DandelionFilter());
+        dandelionFilter.addMappingForUrlPatterns(null, false, "/*");
+
+        ServletRegistration.Dynamic dandelionServlet = servletContext.addServlet("dandelionServlet", new DandelionServlet());
+        dandelionServlet.setLoadOnStartup(2);
+        dandelionServlet.addMapping("/dandelion-assets/*");
+
     }
 
-  
+
     private AnnotationConfigWebApplicationContext getContext() {
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
         context.setConfigLocation(CONFIG_LOCATION);

@@ -7,7 +7,6 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
@@ -60,9 +59,9 @@ public class UserController {
 
     }
 
-    @RequestMapping(value = "*", method = RequestMethod.GET)
+   /* @RequestMapping(value = "*", method = RequestMethod.GET)
     public void catchAll() {
         log.info("++++++ catch all");
-    }
+    }*/
 
 }

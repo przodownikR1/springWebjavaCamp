@@ -5,6 +5,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import pl.java.scalatech.converters.AmountFormatAnnotationFormatterFactory;
@@ -32,6 +33,12 @@ public void addFormatters(FormatterRegistry registry) {
     registry.addConverter(longToUserConverter);
     registry.addFormatter(amountFormatter);
     registry.addFormatterForFieldAnnotation(amountFormatAnnotationFormatterFactory);
+}
+
+@Override
+public void addViewControllers(ViewControllerRegistry registry) {
+       registry.addViewController("/").setViewName("hello");
+
 }
 
 /*@Override
