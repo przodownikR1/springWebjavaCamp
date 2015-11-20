@@ -1,6 +1,10 @@
 package pl.java.scalatech.domain;
 
+import java.time.LocalDate;
+
 import javax.xml.bind.annotation.XmlRootElement;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,5 +22,7 @@ public class User {
     private String login;
     @AmountFormat
     private Long salary;
+    @DateTimeFormat(style = "S-")
+    private LocalDate birthDate;
 
 }

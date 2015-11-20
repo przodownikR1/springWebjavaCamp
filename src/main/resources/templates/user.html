@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:tiles="http://www.thymeleaf.org"
+    xmlns:dt="http://github.com/dandelion/datatables"
+     th:lang="${#locale.language}">
+
+<head>
+  <title>FirstTest</title>
+</head>
+
+
+<body>
+ <h1>User</h1>
+ <form th:action="@{/user}" method="post">
+      <input type="text" th:value="${user.login}" name="name"/>
+      <input type="text" th:value="${user.birthDate}" name="status"/>
+      <button type="submit">Go</button>
+</form>
+ <form action="#" th:action="@{/user}" th:object="${user}" method="post">
+            <table>
+                <tr>
+                    <td>Name:</td>
+                    <td><input type="text" th:field="*{login}" /></td>
+                    <td th:if="${#fields.hasErrors('login')}" th:errors="*{login}">Name Error</td>
+                </tr>
+                <tr>
+                    <td>Age:</td>
+                    <td><input type="text" th:field="*{age}" /></td>
+                    <td th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Name Error</td>
+                </tr>
+                <tr>
+                    <td><button type="submit">Submit</button></td>
+                </tr>
+            </table>
+        </form>
+
+
+
+</body>
+</html>
