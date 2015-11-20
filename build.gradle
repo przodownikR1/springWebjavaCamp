@@ -71,6 +71,8 @@ dependencies {
     
     compile ("org.thymeleaf:thymeleaf-spring4:${thymeleafVersion}")
     compile 'com.github.dandelion:datatables-core:1.1.0'
+    compile 'com.github.dandelion:datatables-thymeleaf:1.1.0'
+    
     compile 'com.github.mxab.thymeleaf.extras:thymeleaf-extras-data-attribute:1.3'
     
     

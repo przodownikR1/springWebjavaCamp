@@ -8,6 +8,9 @@ import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
+import com.github.dandelion.datatables.thymeleaf.dialect.DataTablesDialect;
+import com.github.mxab.thymeleaf.extras.dataattribute.dialect.DataAttributeDialect;
+
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 
 @Configuration
