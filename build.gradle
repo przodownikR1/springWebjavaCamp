@@ -70,6 +70,8 @@ dependencies {
     compile ("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:1.2.5")
     compile 'com.fasterxml.jackson.core:jackson-databind:2.6.3'
     compile 'com.fasterxml.jackson.core:jackson-core:2.6.3'
+    compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.6.3'
+    
     
     compile ("org.thymeleaf:thymeleaf-spring4:${thymeleafVersion}")
     compile 'com.github.dandelion:datatables-core:1.1.0'

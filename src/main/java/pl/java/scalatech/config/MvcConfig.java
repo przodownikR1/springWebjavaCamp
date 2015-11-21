@@ -14,6 +14,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.MediaType;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.web.accept.ContentNegotiationManager;
 import org.springframework.web.servlet.View;
@@ -26,6 +29,8 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
+
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 import pl.java.scalatech.converters.AmountFormatAnnotationFormatterFactory;
 import pl.java.scalatech.converters.AmountFormatter;
@@ -115,10 +120,11 @@ public Jaxb2Marshaller jaxb2Marshaller() {
 }
 
 
-}
 
-  /*@Override
+  @Override
   public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
-  super.
-  }*/
-
+      Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder();
+      builder.featuresToDisable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+      converters.add(new MappingJackson2HttpMessageConverter(builder.build()));
+  }
+}
