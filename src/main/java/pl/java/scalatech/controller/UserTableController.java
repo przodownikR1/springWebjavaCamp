@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.extern.slf4j.Slf4j;
 import pl.java.scalatech.domain.User;
@@ -42,17 +43,17 @@ public class UserTableController {
         return "redirect:/results";
     }
 
-    @RequestMapping(value ="/redirectUser/{str}/str", method=RequestMethod.GET)
-    @ResponseBody String redirectStringUser(@PathVariable String str,Model model){
+    @RequestMapping(value ="/redirectUser/str", method=RequestMethod.GET)
+    @ResponseBody String redirectStringUser(Model model){
            log.info("+ +++ model : {}",model);
-           return "redirect : to : "+str ;
+           return "redirect : to : "+model.asMap().values() ;
     }
 
     @RequestMapping(value ="/redirectUser/{id}", method=RequestMethod.GET)
-    String redirectUser(@PathVariable Long id,Model model){
+    String redirectUser(@PathVariable Long id,RedirectAttributes ra){
         User loaded = userRepository.findById(id);
-        model.addAttribute("username", loaded);
-        return "redirect:/redirectUser/"+loaded.getLogin()+"/str";
+        ra.addFlashAttribute("user", loaded);
+        return "redirect:/redirectUser/str";
     }
 
 }
