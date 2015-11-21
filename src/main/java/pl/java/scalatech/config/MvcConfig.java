@@ -67,7 +67,9 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("hello");
+        registry.addViewController("/welcome").setViewName("welcome");
         registry.addViewController("/results").setViewName("results");
+        registry.addViewController("/illegalEx").setViewName("illegalEx");
     }
     @Override
     public  void addInterceptors(org.springframework.web.servlet.config.annotation.InterceptorRegistry registry) {
@@ -79,13 +81,13 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
         super.configureContentNegotiation(configurer);
         Map<String, MediaType> mediaTypeMap = newHashMap();
-        mediaTypeMap.put("atom", MediaType.APPLICATION_ATOM_XML);
         mediaTypeMap.put("html", MediaType.TEXT_HTML);
+        mediaTypeMap.put("atom", MediaType.APPLICATION_ATOM_XML);
         mediaTypeMap.put("json", MediaType.APPLICATION_JSON);
         mediaTypeMap.put("xml", MediaType.APPLICATION_XML);
 
         configurer.favorPathExtension(true).favorParameter(true).parameterName("mediaType").ignoreAcceptHeader(true).useJaf(false)
-                .defaultContentType(MediaType.APPLICATION_JSON).mediaTypes(mediaTypeMap);
+                .defaultContentType(MediaType.TEXT_HTML).mediaTypes(mediaTypeMap);
 
 
     }

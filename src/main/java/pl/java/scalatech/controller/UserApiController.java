@@ -87,6 +87,31 @@ public class UserApiController {
         return new ResponseEntity<>(loaded, HttpStatus.NO_CONTENT);
     }
 
+
+    @RequestMapping(value = "/users3/{id:\\d+}/ex/{ex:\\d+}", method = RequestMethod.GET)
+    public ResponseEntity<String> updateResource(@PathVariable Long id,@PathVariable Integer ex) {
+        if(ex == 1) {
+            throw new IllegalArgumentException("ex ==1");
+        }
+        if(ex == 2) {
+            throw new IllegalStateException("ex == 2");
+        }
+
+        return  ResponseEntity.ok().body("normal");
+
+    }
+
+   /* @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<String> handleUnsupportedOperation1(UnsupportedOperationException uoe) {
+        return new ResponseEntity<>(uoe.getMessage(), HttpStatus.BAD_REQUEST);
+    }*/
+
+
+    @ExceptionHandler(IllegalStateException.class)
+    public ResponseEntity<String> handleUnsupportedOperation2(UnsupportedOperationException uoe) {
+        return new ResponseEntity<>(uoe.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(NullPointerException.class)
     public ResponseEntity<String> handleUnsupportedOperation(UnsupportedOperationException uoe) {
         return new ResponseEntity<>(uoe.getMessage(), HttpStatus.BAD_REQUEST);

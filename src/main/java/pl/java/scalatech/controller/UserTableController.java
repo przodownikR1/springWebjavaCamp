@@ -23,13 +23,13 @@ public class UserTableController {
         model.addAttribute("users", userRepository.getAll());
         return "hello";
     }
-    
+
     @RequestMapping("/user")
     String getUser(Model model){
         model.addAttribute("user", userRepository.findById(1l));
         return "user";
     }
-    
+
     @RequestMapping(value ="/user", method=RequestMethod.POST)
     String getUser(@Valid User user, BindingResult bindingResult ){
         if (bindingResult.hasErrors()) {
@@ -37,5 +37,5 @@ public class UserTableController {
         }
         return "redirect:/results";
     }
-    
+
 }
