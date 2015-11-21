@@ -9,11 +9,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import pl.java.scalatech.annotations.AmountFormat;
 
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-//@XmlRootElement
-public class User {
+public class Person {
 
     private Long id;
     private String name;
