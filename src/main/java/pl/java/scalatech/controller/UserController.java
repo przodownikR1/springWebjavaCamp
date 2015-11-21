@@ -59,6 +59,9 @@ public class UserController {
 
     }
 
+
+
+
    /* @RequestMapping(value = "*", method = RequestMethod.GET)
     public void catchAll() {
         log.info("++++++ catch all");
