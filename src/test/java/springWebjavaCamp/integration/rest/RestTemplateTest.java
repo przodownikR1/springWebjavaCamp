@@ -26,4 +26,10 @@ public void getTest() {
   log.info("{}",loaded.getBody());
 }
 
+@Test
+public void postTest() {
+  ResponseEntity<User> loaded = restTemplate.getForEntity("http://localhost:8080/springWebjavaCamp/users/1", User.class);
+  log.info("{}",loaded.getBody());
+}
+
 }
