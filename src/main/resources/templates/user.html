@@ -12,22 +12,23 @@
 
 <body>
  <h1>User</h1>
- <form th:action="@{/user}" method="post">
-      <input type="text" th:value="${user.login}" name="name"/>
-      <input type="text" th:value="${user.birthDate}" name="status"/>
-      <button type="submit">Go</button>
-</form>
+
  <form action="#" th:action="@{/user}" th:object="${user}" method="post">
             <table>
                 <tr>
-                    <td>Name:</td>
+                    <td>login:</td>
                     <td><input type="text" th:field="*{login}" /></td>
-                    <td th:if="${#fields.hasErrors('login')}" th:errors="*{login}">Name Error</td>
+                    <td th:if="${#fields.hasErrors('login')}" th:errors="*{login}">login Error</td>
                 </tr>
                 <tr>
-                    <td>Age:</td>
-                    <td><input type="text" th:field="*{age}" /></td>
-                    <td th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Name Error</td>
+                    <td>birth:</td>
+                    <td><input type="text" th:field="*{birthDate}" /></td>
+                    <td th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}">Birth Error</td>
+                </tr>
+                   <tr>
+                    <td>salary:</td>
+                    <td><input type="text" th:field="*{salary}" /></td>
+                    <td th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}">Salary Error</td>
                 </tr>
                 <tr>
                     <td><button type="submit">Submit</button></td>

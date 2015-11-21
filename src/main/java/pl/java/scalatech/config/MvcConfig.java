@@ -22,6 +22,7 @@ import org.springframework.web.servlet.config.annotation.ContentNegotiationConfi
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
@@ -35,7 +36,7 @@ import pl.java.scalatech.domain.User;
 @Configuration
 @ComponentScan({ "pl.java.scalatech.controller", "pl.java.scalatech.initializer" })
 @EnableWebMvc
-@Import(ThymeleafConfig.class)
+@Import(value= {ThymeleafConfig.class,I18nConfig.class})
 public class MvcConfig extends WebMvcConfigurerAdapter {
 
     @Autowired
@@ -46,6 +47,8 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     private AmountFormatter amountFormatter;
     @Autowired
     private AmountFormatAnnotationFormatterFactory amountFormatAnnotationFormatterFactory;
+    @Autowired
+    private  LocaleChangeInterceptor localeChangeInterceptor;
 
     @Override
     public void addFormatters(FormatterRegistry registry) {
@@ -59,6 +62,11 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("hello");
+        registry.addViewController("/results").setViewName("results");
+    }
+    @Override
+    public  void addInterceptors(org.springframework.web.servlet.config.annotation.InterceptorRegistry registry) {
+        registry.addInterceptor(localeChangeInterceptor);
 
     }
 
@@ -70,11 +78,11 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         mediaTypeMap.put("html", MediaType.TEXT_HTML);
         mediaTypeMap.put("json", MediaType.APPLICATION_JSON);
         mediaTypeMap.put("xml", MediaType.APPLICATION_XML);
-        
+
         configurer.favorPathExtension(true).favorParameter(true).parameterName("mediaType").ignoreAcceptHeader(true).useJaf(false)
                 .defaultContentType(MediaType.APPLICATION_JSON).mediaTypes(mediaTypeMap);
-                
-                
+
+
     }
 
 
@@ -84,7 +92,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         ContentNegotiatingViewResolver viewResolver = new ContentNegotiatingViewResolver();
         viewResolver.setContentNegotiationManager(manager);
         viewResolver.setOrder(1);
-        
+
         List<ViewResolver> viewResolverList = newArrayList();
         viewResolverList.add(thymeleafResolver);
         viewResolver.setOrder(1);
@@ -113,4 +121,4 @@ public Jaxb2Marshaller jaxb2Marshaller() {
   public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
   super.
   }*/
- 
+
