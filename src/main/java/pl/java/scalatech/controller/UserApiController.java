@@ -56,21 +56,20 @@ public class UserApiController {
         return ResponseEntity.ok(userRepository.findById(id));
 
     }
+
     @RequestMapping("/path/{id}")
     String path(@PathVariable Long id, UriComponentsBuilder uriBuilder) {
-        UriComponents uriComponents =
-                uriBuilder.path("/api/users3/{id}").buildAndExpand(id);
+        UriComponents uriComponents = uriBuilder.path("/api/users3/{id}").buildAndExpand(id);
         return uriComponents.toUri().toString();
     }
-
 
     @RequestMapping(value = "/users3/{id}", method = RequestMethod.POST)
     HttpEntity<Void> post(@PathVariable Long id, @RequestBody User user, HttpServletRequest request) {
         User loaded = userRepository.save(user);
         HttpHeaders headers = new HttpHeaders();
         id = loaded.getId();
-        final UriComponentsBuilder builder = ServletUriComponentsBuilder.fromPath("/api/users3/"+id)
-                .scheme(request.getScheme()).host(request.getServerName()).port(request.getServerPort());
+        final UriComponentsBuilder builder = ServletUriComponentsBuilder.fromPath("/api/users3/" + id).scheme(request.getScheme()).host(request.getServerName())
+                .port(request.getServerPort());
         headers.setLocation(builder.build().toUri());
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
@@ -90,6 +89,6 @@ public class UserApiController {
 
     @ExceptionHandler(NullPointerException.class)
     public ResponseEntity<String> handleUnsupportedOperation(UnsupportedOperationException uoe) {
-            return new ResponseEntity<>(uoe.getMessage(), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(uoe.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }
