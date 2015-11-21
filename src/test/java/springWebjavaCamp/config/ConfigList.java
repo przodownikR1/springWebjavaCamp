@@ -13,6 +13,7 @@ public class ConfigList {
 
 
   @Bean(name="items")
+  //@ClassPresentConditional(value="org.h2.Driver",negated=false)
   public List<Item> strings(){
      return Lists.newArrayList(new Item("slawek"),new Item("maciek"),new Item("koala"));
   }
